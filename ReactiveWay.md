@@ -23,7 +23,6 @@ const source1 = Rx.DOM.getJSON('/resource1').pluck('name')
 const source2 = Rx.DOM.getJSON('/resource2').pluck('props', 'name')
 const clicks = Rx.Observable.fromEvent(button, 'click')
 
-
 function getResults(amount) {
     return source1
         .merge(source2)
