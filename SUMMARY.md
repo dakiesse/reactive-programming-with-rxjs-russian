@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [1. Reactive Way](/ReactiveWay.md)
-  * [А "реактивный" - это вообще что?](/ReactiveWay.md#11)
+  * [А "реактивный" - это вообще что?](//ReactiveWay.md#11)
 
 
 
