@@ -6,11 +6,36 @@
 
 В это главе мы познакомимся с реактивным программированием. С парадигмой, которая позволит более простым и естественным спобом думать о асинхронном коде. Я покажу вам, как потоки событий, которые мы называем Observables — являются прекрасным способом обработки событий. Затем мы с вами создадим Observable и посмотрим, как "реактивное мышление" и RxJS в значительной степени улучшают текущие техники. Это сделает ваш фейс больше радостным, а так это поможет вам статить более продуктивным разработчиком.
 
-
-
 ## А "реактивный" - это вообще что? {#фф}
 
+Давайте начнем с рассмотрения небольшой "реактивной" программы RxJS. Эта программа должна получать данные из разных источников одним нажатием кнопки, и она имеет следующие требования:
 
+* Программа должна объединять данные из двух разных источников, которые возвращают разные структуры в JSON.
+* Финальный результат обработки не должен содержать каких-либо дублекатов.
+* Чтобы пользователь не мог жать на кнопку как дурак по многу раз, тем самым делая кучу запросов, мы будет разрешать нажимать только один раз в секунду времени.
+
+Используя RxJS мы бы написали, что-то такое:
+
+```js
+const button = document.getElementById('retrieveDataBtn')
+const source1 = Rx.DOM.getJSON('/resource1').pluck('name');
+var source2 = Rx.DOM.getJSON('/resource2').pluck('props', 'name');
+function getResults(amount) {
+return source1.merge(source2)
+.pluck('names')
+.flatMap(function(array) { return Rx.Observable.from(array); })
+.distinct()
+.take(amount);
+}
+var clicks = Rx.Observable.fromEvent(button, 'click');
+clicks.debounce(1000)
+.flatMap(getResults(5))
+.subscribe(
+function(value) { console.log('Received value', value); },
+function(err) { console.error(err); },
+function() { console.log('All values retrieved!'); }
+);
+```
 
 
 
