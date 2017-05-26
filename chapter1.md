@@ -25,7 +25,8 @@ const clicks = Rx.Observable.fromEvent(button, 'click')
 
 
 function getResults(amount) {
-    return source1.merge(source2)
+    return source1
+        .merge(source2)
         .pluck('names')
         .flatMap(array => Rx.Observable.from(array))
         .distinct()
