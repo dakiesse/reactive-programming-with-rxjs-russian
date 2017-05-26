@@ -1,8 +1,8 @@
 # Summary
 
 * [Introduction](README.md)
-* [Reactive Way](/ReactiveWay.md)
-  * [А "реактивный" - это вообще что?](/chapter1.md#11)
+* [1. Reactive Way](/ReactiveWay.md)
+  * [А "реактивный" - это вообще что?](/ReactiveWay.md#11)
 
 
 
