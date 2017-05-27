@@ -137,5 +137,19 @@ document.addEventListener('click', function registerClicks (e) {
 SELECT x, y FROM clicks LIMIT 10
 ```
 
+А что, если бы мы эти события клика мышкой обрабатывали бы как потоки данных, которые можно запросить и преобразовать? В конце концов, этот поток ничем не отличается от базы данных, которая генерирует значения в реальном времени. Все, что нам нужно, это тип данных, который абстрагирует эту концепцию для нас.
+
+Введите RxJS и его тип данных Observable:
+
+```js
+Rx.Observable.fromEvent(document, 'click')
+  .filter(c => c.clientX > window.innerWidth / 2)
+  .take(10)
+  .subscribe(
+    (c) => console.log(c.clientX, c.clientY)
+  )
+
+```
+
 
 
