@@ -1,10 +1,12 @@
 # Реактивное программирование с RxJS
 
-Перевод книги Reactive Programming with RxJS by
-
-![](https://imagery.pragprog.com/products/423/smreactjs_xlargecover.jpg?1485379152)
+_Перевод книги [Reactive Programming with RxJS by Sergi Mansilla](https://pragprog.com/book/smreactjs/reactive-programming-with-rxjs)_
 
 <p align="center">
-<img src="https://imagery.pragprog.com/products/423/smreactjs_xlargecover.jpg?1485379152" />
+    <img src="https://imagery.pragprog.com/products/423/smreactjs_xlargecover.jpg?1485379152" />
 </p>
+
+Реактивное программирование является революционным. Это делает асинхронное программирование чистым, интуитивно понятным и надежным. Используйте библиотеку RxJS для простого написания сложных программ, объединяя асинхронные механизмы, такие как callbacks и Promises, в мощный тип данных: Observable. Научитесь думать о своих программах как о потоках данных, которые вы можете трансформировать, выражая то, что должно произойти, вместо того, чтобы тщательно программировать, как это должно происходить. Управляйте параллелизмом в реальном мире и легко составляйте сложные потоки событий в ваших приложениях.
+
+
 
