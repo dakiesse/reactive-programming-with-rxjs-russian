@@ -174,19 +174,22 @@ _Создай объект Observable, который будет следить 
 
 ```js
 // ch1/observer_pattern.js
-function Producer () {
-  this.listeners = []
+function Publisher () {
+  this.subscribers = []
 }
-Producer.prototype.add = function (listener) {
-  this.listeners.push(listener)
+
+Publisher.prototype.add = function (subscriber) {
+  this.subscribers.push(subscriber)
 }
-Producer.prototype.remove = function (listener) {
-  const index = this.listeners.indexOf(listener)
-  this.listeners.splice(index, 1)
+
+Publisher.prototype.remove = function (subscriber) {
+  const index = this.subscribers.indexOf(subscriber)
+  this.subscribers.splice(index, 1)
 }
-Producer.prototype.notify = function (message) {
-  this.listeners.forEach(function (listener) {
-    listener.update(message)
+
+Publisher.prototype.notify = function (message) {
+  this.subscribers.forEach((subscriber) => {
+    subscriber.update(message)
   })
 }
 ```
