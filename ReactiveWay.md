@@ -194,5 +194,26 @@ Publisher.prototype.notify = function (message) {
 }
 ```
 
+Объект Publisher хранит динамический список Subscribers в массиве, который будет обновляться всякий раз, когда Publisher вызывает свой метод уведомления. В следующем коде мы создаем два объекта, которые прослушивают уведомитель, экземпляр Publisher:
+
+```js
+// ch1/observer_pattern.js
+// любой объек имещий метод update будет работать
+const subscriber1 = {
+  update(message) {
+    console.log('Listener 1 received:', message)
+  }
+}
+const subscriber2 = {
+  update(message) {
+    console.log('Listener 2 received:', message)
+  }
+}
+const notifier = new Publisher
+notifier.add(subscriber1)
+notifier.add(subscriber2)
+notifier.notify('Hello there!')
+```
+
 
 
