@@ -237,6 +237,50 @@ Subscriber 2 received: Hello there!
 Объекты `subscriber1` и `subscriber2` будут оповещены о изменение состояния объекта `notifier` всякий раз как будет вызываться метод `notify`. Заметьте, объектам `subscriber1` и `subscriber2`, не нужно ни чего делать!
 
 ### Паттерн Iterator
+Другая фундаментальная состовляющая Observable - это паттерн Iterator. Итератор - это объект, который предоставляет простой способ прохода его содержимого, скрывая реализацию.
 
+Интерфейс Iterator очень прост. Он требует реализации двух методов: `next`, чтобы получить следующий элемент последовательности, и `hasNext`, чтобы проверить, остались ли элементы в последовательности.
 
+Вот как мы могли бы написать итератор, который работает с массивом чисел и возвращает только те элементы, которые кратны параметру `divisor`:
 
+```js
+// ch1/iterator.js
+function IterateOnMultiples (arr, divisor) {
+  this.cursor = 0
+  this.array = arr
+  this.divisor = divisor || 1
+}
+
+IterateOnMultiples.prototype.next = function () {
+  while (this.cursor < this.array.length) {
+    let value = this.array[this.cursor++]
+    if (value % this.divisor === 0) {
+      return value
+    }
+  }
+}
+
+IterateOnMultiples.prototype.hasNext = function () {
+  let cur = this.cursor
+  while (cur < this.array.length) {
+    if (this.array[cur++] % this.divisor === 0) {
+      return true
+    }
+  }
+
+  return false
+}
+```
+
+Вот так мы можем использовать итератор:
+
+```js
+// ch1/iterator.js
+const consumer = new IterateOnMultiples([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)
+
+console.log(consumer.next(), consumer.hasNext()) // 3 true
+console.log(consumer.next(), consumer.hasNext()) // 6 true
+console.log(consumer.next(), consumer.hasNext()) // 9 false
+```
+
+Итераторы прекрасно подходят для инкапсуляции логики последовательного доступа ко всем элементам для любой структуры данных. Как мы видели в предыдущем примере, итераторы становятся интересными, если сделать их универсальными для обработки различных типов данных, или когда их можно настроить во время выполнения, как мы это делали в нашем примере с параметром `divisor`.
